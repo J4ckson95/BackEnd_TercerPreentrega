@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Archivo de Tormentas",
+		"price": 120000,
+		"stock": 50,
+		"id": 1
+	},
+	{
+		"name": "DUNE III",
+		"price": 10000,
+		"stock": 110,
+		"id": 3
+	},
+	{
+		"name": "El imperio final II",
+		"price": 10000,
+		"stock": 150,
+		"id": 4
+	},
+	{
+		"name": "El imperio final III",
+		"price": 10000,
+		"stock": 150,
+		"id": 5
+	}
+]
