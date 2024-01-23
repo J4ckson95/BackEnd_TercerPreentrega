@@ -1,4 +1,6 @@
 import config from "../config/config.js"
+import mongoose from "mongoose"
+
 
 export let products
 export let carts
@@ -14,6 +16,15 @@ switch (config.PERSISTENCE) {
         carts = CartsFile
         users = UsersFile
         break;
+    case "MONGO":
+        await mongoose.connect(config.MONGOURL, { dbName: config.DBNAME }).then(() => console.log("DataBase Connected"))
+        const { default: ProductsMongo } = await import("./Mongo/products.mongo.js")
+        const { default: CartsMongo } = await import("./Mongo/carts.mongo.js")
+        const { default: UsersMongo } = await import("./Mongo/users.mongo.js")
+        products = ProductsMongo
+        carts = CartsMongo
+        users = UsersMongo
+        break
     default:
-        break;
+        throw new Error('Persistence not recognized')
 }
