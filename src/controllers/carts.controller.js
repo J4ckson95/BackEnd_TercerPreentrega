@@ -1,10 +1,8 @@
 import { cartsService } from "../services/main.js"
 
 export const createCart = async (req, res) => {
-    try {
-        const result = await cartsService.createCart()
-        res.json({ status: "Success", payload: result })
-    } catch (error) { res.json({ status: "Error", message: error.message }) }
+    const result = await cartsService.createCart()
+    res.json({ status: "Success", payload: result })
 }
 export const addProductToCart = async (req, res) => {
     const { cid, pid } = req.params
