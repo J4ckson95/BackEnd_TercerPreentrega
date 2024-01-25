@@ -11,10 +11,9 @@ export default class cartRepository {
         else cart.products[indexProduct].quantity += quantity
         return await this.dao.updateCart(cid, cart)
     }
-    async deleteProductsOfCart(cid, pid) {
+    async deleteProductsOfCart(cid) {
         const cart = await this.dao.getCartById(cid)
-        const newCart = cart.products.filter(element => element._id !== pid)
-        return this.dao.updateCart(cid, newCart)
+        cart.products = []
+        return this.dao.updateCart(cid, cart)
     }
-    async deleteCart(id) { return this.dao.delateCart() }
 }

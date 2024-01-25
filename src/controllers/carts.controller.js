@@ -16,12 +16,7 @@ export const getCartById = async (req, res) => {
     res.json({ status: "Success", payload: result })
 }
 export const deleteProducts = async (req, res) => {
-    const { cid, pid } = req.params
-    const result = await cartsService.deleteProductsOfCart(cid, pid)
-    res.json({ status: "Success", payload: result })
-}
-export const deleteCart = async (req, res) => {
     const { cid } = req.params
-    const result = await cartsService.deleteCart(cid)
+    const result = await cartsService.deleteProductsOfCart(cid)
     res.json({ status: "Success", payload: result })
 }
