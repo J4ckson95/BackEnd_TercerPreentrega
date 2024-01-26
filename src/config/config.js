@@ -5,5 +5,6 @@ export default {
     PERSISTENCE: process.env.PERSISTENCE,
     PORT: process.env.PORT,
     MONGOURL: process.env.MONGOURL,
-    DBNAME: process.env.DBNAME
+    DBNAME: process.env.DBNAME,
+    PRIVATEKEY: process.env.PRIVATEKEY
 }
