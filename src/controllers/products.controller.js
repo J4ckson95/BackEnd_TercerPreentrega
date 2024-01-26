@@ -2,8 +2,22 @@ import { productService } from "../services/main.js"
 
 export const getProducts = async (req, res) => {
     try {
-        const data = await productService.getProducts()
-        res.json({ status: "Success", payload: data })
+        const { limit = 3, page = 1, query = {}, sort = "desc" } = req.query;
+        const sortOrder = sort === "asc" ? 1 : sort === "desc" ? -1 : -1;
+        const data = await productService.getProducts(limit, page, query, sortOrder)
+        const { docs: payload, page: pageM, hasPrevPage, prevPage, hasNextPage, nextPage, totalPages } = data;
+        res.render("showProducts", {
+            status: "Success",
+            payload,
+            totalPages,
+            prevPage,
+            nextPage,
+            page: pageM,
+            hasPrevPage,
+            hasNextPage,
+            prevLink: hasPrevPage ? `/api/products/?page=${prevPage}&?limit=${limit}&?query=${query}&?sort=${sort}` : null,
+            nextLink: hasNextPage ? `/api/products/?page=${nextPage}&?limit=${limit}&?query=${query}&?sort=${sort}` : null,
+        });
     } catch (error) { res.json({ status: "Error", message: error.message }) }
 }
 export const addProduct = async (req, res) => {
