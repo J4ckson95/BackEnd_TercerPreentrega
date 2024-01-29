@@ -1,12 +1,27 @@
-import { userService } from "../services/main.js";
+import { userService, cartsService } from "../services/main.js";
+import { generateHas, validateHas, generateToken } from "../utils.js";
 
 export const createUser = async (req, res) => {
     try {
-        const user = req.body
-        console.log(user);
-        const result = await userService.createUser(user)
-        res.json({ status: "Success", payload: result })
-    } catch (error) { res.json({ status: "Error", message: error.message }) }
+        const { email, password, ...rest } = req.body
+        const user = await userService.findByEmail(email)
+        if (user) {
+            console.log("Error email ya registrado, PENDIENTE DE ARREGLAR");
+            return res.redirect("/librosalclic/session/login")
+        }
+        const newCart = await cartsService.createCart()
+        const newUser = { email, password: generateHas(password), cartId: newCart._id, ...rest }
+        await userService.createUser(newUser)
+        res.redirect("/librosalclic/session/login")
+    } catch (error) { res.json({ status: "Error1", message: error.message }) }
+}
+export const validateUser = async (req, res) => {
+    const { email, password } = req.body
+    const user = await userService.findByEmail(email)
+    if (!user) return res.redirect("/librosalclic/session/register")
+    if (!validateHas(user, password)) return res.json({ status: "Error", message: "Contraseña incorrecta" })
+    const token = generateToken(user)
+    res.cookie("authToken", token).redirect("/api/products/")
 }
 export const getUsers = async (req, res) => {
     try {

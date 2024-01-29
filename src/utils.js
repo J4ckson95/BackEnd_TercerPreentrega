@@ -8,8 +8,13 @@ const __dirname = dirname(__filename)
 export default __dirname
 /*---------------------------------*/
 export const generateHas = (password) => {
-    return bcrypt.hashSync(password, bcrypt.genSalt(10))
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 }
 export const validateHas = (user, password) => {
     return bcrypt.compareSync(password, user.password)
+}
+/*------------------------------------------------------------*/
+export const generateToken = (user) => {
+    const token = jwt.sign({ user }, config.PRIVATE_KEY, { expiresIn: "24h" })
+    return token
 }

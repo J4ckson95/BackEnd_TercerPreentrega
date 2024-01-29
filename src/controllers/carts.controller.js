@@ -6,8 +6,7 @@ export const createCart = async (req, res) => {
 }
 export const addProductToCart = async (req, res) => {
     const { cid, pid } = req.params
-    const { quantity } = req.query
-    const result = await cartsService.addProductToCart(cid, pid, quantity)
+    const result = await cartsService.addProductToCart(cid, pid)
     res.json({ status: "Success", payload: result })
 }
 export const getCartById = async (req, res) => {

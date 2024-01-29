@@ -96,19 +96,4 @@ a:hover {
         </div>
     </div>
 </body>
-<script>
-    const button = document.querySelectorAll("button")
-    for (let i = 0; i < button.length; i++) {
-        button[i].onclick = (e) => {
-            const productId = e.target.id
-            fetch(`/api/cart/product/${productId}`, { method: "POST" }).then(response => {
-                if (!response.ok) return response.json()
-            })
-                .then(data => console.log(data.dataCartId))
-                .catch(error => {
-                    console.error('Error :', error);
-                })
-        };
-    }
-
-</script>
+<script src="/js/home.js"></script>

@@ -6,5 +6,5 @@ export default {
     PORT: process.env.PORT,
     MONGOURL: process.env.MONGOURL,
     DBNAME: process.env.DBNAME,
-    PRIVATEKEY: process.env.PRIVATEKEY
+    PRIVATE_KEY: process.env.PRIVATE_KEY
 }

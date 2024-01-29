@@ -3,10 +3,10 @@ import { productService } from "../services/main.js"
 export const getProducts = async (req, res) => {
     try {
         const { limit = 3, page = 1, query = {}, sort = "desc" } = req.query;
-        const sortOrder = sort === "asc" ? 1 : sort === "desc" ? -1 : -1;
+        const sortOrder = sort === "asc" ? 1 : -1;
         const data = await productService.getProducts(limit, page, query, sortOrder)
         const { docs: payload, page: pageM, hasPrevPage, prevPage, hasNextPage, nextPage, totalPages } = data;
-        res.render("showProducts", {
+        res.render("home", {
             status: "Success",
             payload,
             totalPages,
@@ -15,8 +15,8 @@ export const getProducts = async (req, res) => {
             page: pageM,
             hasPrevPage,
             hasNextPage,
-            prevLink: hasPrevPage ? `/api/products/?page=${prevPage}&?limit=${limit}&?query=${query}&?sort=${sort}` : null,
-            nextLink: hasNextPage ? `/api/products/?page=${nextPage}&?limit=${limit}&?query=${query}&?sort=${sort}` : null,
+            prevLink: hasPrevPage ? `/api/products/?page=${prevPage}&limit=${limit}&sort=${sort}` : null,
+            nextLink: hasNextPage ? `/api/products/?page=${nextPage}&limit=${limit}&sort=${sort}` : null,
         });
     } catch (error) { res.json({ status: "Error", message: error.message }) }
 }
