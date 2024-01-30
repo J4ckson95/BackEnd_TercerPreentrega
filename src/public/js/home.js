@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const button = document.querySelectorAll("button")
 for (let i = 0; i < button.length; i++) {
     button[i].onclick = (e) => {
-        if (!cartId) document.location.href = "/librosalclic/session/login"
+        if (!cartId) return document.location.href = "/librosalclic/session/login"
         const productId = e.target.id
         fetch(`/api/carts/${cartId}/product/${productId}`, { method: "PUT" }).then(response => {
             if (response.ok) return response.json()

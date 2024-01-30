@@ -12,6 +12,7 @@ export const addProductToCart = async (req, res) => {
 export const getCartById = async (req, res) => {
     const { cid } = req.params
     const result = await cartsService.getCartById(cid)
+    console.log(result);
     res.json({ status: "Success", payload: result })
 }
 export const deleteProducts = async (req, res) => {

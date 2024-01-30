@@ -1,9 +1,9 @@
 import cartModel from "./models/carts.model.js";
 
 export default class carts {
-    async getCarts() {
+    async getCarts(cid) {
         try {
-            return cartModel.find().lean()
+            return cartModel.find({ _id: cid }).lean()
         } catch (error) { console.error("Error en getCarts:", error.message); }
     }
     async createCart() {
