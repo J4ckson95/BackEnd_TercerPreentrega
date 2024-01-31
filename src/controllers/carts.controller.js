@@ -10,10 +10,10 @@ export const addProductToCart = async (req, res) => {
     res.json({ status: "Success", payload: result })
 }
 export const getCartById = async (req, res) => {
+    const { user } = req.user
     const { cid } = req.params
     const result = await cartsService.getCartById(cid)
-    console.log(result);
-    res.json({ status: "Success", payload: result })
+    res.render("cart", { result, user })
 }
 export const deleteProducts = async (req, res) => {
     const { cid } = req.params

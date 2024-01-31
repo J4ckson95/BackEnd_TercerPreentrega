@@ -1,5 +1,9 @@
+import { validateToken } from "../utils.js"
 export const cookieStractor = (req, res, next) => {
     const token = (req?.cookies) ? req.cookies["authToken"] : null
-    console.log(token);
-    return next
+    if (token) {
+        const data = validateToken(token)
+        req.user = data
+        return next()
+    }
 }

@@ -11,8 +11,5 @@ const cartSchema = mongoose.Schema({
         default: []
     }
 })
-cartSchema.pre("find", function () {
-    this.populate("products.product")
-})
 const cartModel = mongoose.model("carts", cartSchema)
 export default cartModel

@@ -18,3 +18,7 @@ export const generateToken = (user) => {
     const token = jwt.sign({ user }, config.PRIVATE_KEY, { expiresIn: "24h" })
     return token
 }
+export const validateToken = (token) => {
+    const data = jwt.verify(token, config.PRIVATE_KEY)
+    return data
+}

@@ -1,0 +1,18 @@
+<body>
+    <div>
+        <h2>Lista de compra</h2>
+        <div>
+            <p>{{user.first_name}}</p>
+            <p>{{user.email}}</p>
+        </div>
+        <div>
+            {{#each payload}}
+            <div>
+                <img>
+                <h4>{{this.title}}</h4>
+                <p>{{this.price}}</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</body>
