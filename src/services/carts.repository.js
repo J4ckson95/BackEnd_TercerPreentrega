@@ -3,7 +3,7 @@ export default class cartRepository {
         this.dao = dao
     }
     async createCart() { return this.dao.createCart() }
-    async getCartById(cid) { return this.dao.getCarts(cid) }
+    async getCartById(cid) { return this.dao.getCartById(cid) }
     async addProductToCart(cid, pid) {
         const cart = await this.dao.getCartById(cid)
         const indexProduct = cart.products.findIndex(element => element._id.toString() === pid)

@@ -1,4 +1,5 @@
 import { cartsService } from "../services/main.js"
+import { ticketServices } from "../services/main.js"
 
 export const createCart = async (req, res) => {
     const result = await cartsService.createCart()
@@ -19,4 +20,9 @@ export const deleteProducts = async (req, res) => {
     const { cid } = req.params
     const result = await cartsService.deleteProductsOfCart(cid)
     res.json({ status: "Success", payload: result })
+}
+export const generateTicket = async (req, res) => {
+    const { cid } = req.params
+    const { user } = req.user
+    await ticketServices.generateTicket(cid, user)
 }

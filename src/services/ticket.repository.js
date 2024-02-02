@@ -1,4 +1,4 @@
-import { cartsService, productService } from "./main";
+import { cartsService, productService } from "./main.js";
 export default class ticketRepository {
     constructor(dao) {
         this.dao = dao
@@ -15,11 +15,9 @@ export default class ticketRepository {
     async generateTicket(cid, user) {
         try {
             const cart = await cartsService.getCartById(cid)
-            for(let product of cart.products){
-                
+            for (let product of cart.products) {
+                console.log("Product:", product);
             }
-        } catch (error) {
-
-        }
+        } catch (error) { console.error("Error en generateTicket:", error.message); }
     }
 }

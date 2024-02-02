@@ -26,7 +26,7 @@ switch (config.PERSISTENCE) {
         products = ProductsMongo
         carts = CartsMongo
         users = UsersMongo
-        ticket = TicketsMongo
+        tickets = TicketsMongo
         break
     default:
         throw new Error('Persistence not recognized')

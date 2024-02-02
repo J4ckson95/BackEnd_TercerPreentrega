@@ -78,12 +78,17 @@
             </div>
         </div>
         {{/each}}
-        <button class="button" id="{{user.cartId}}">Finalizar Compra</button>
+        <button class="button" id={{user.cartId}}>Finalizar Compra</button>
     </div>
 </div>
 <script>
-    const button = document.querySelectorAll("button").onclick("click",(e)=>{
-        const cartId = e.target.id
-        fetch("")
-    })
+    const button = document.querySelector("button");
+        button.addEventListener("click", (e) => {
+            const cartId = e.target.id;
+            fetch(`/api/carts/${cartId}/purchase`)
+                .catch(error => {
+                    console.error('Error:', error.message);
+                });
+        });
+
 </script>
