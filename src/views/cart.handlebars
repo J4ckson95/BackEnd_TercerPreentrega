@@ -78,6 +78,12 @@
             </div>
         </div>
         {{/each}}
-        <button>Comprar</button>
+        <button class="button" id="{{user.cartId}}">Finalizar Compra</button>
     </div>
 </div>
+<script>
+    const button = document.querySelectorAll("button").onclick("click",(e)=>{
+        const cartId = e.target.id
+        fetch("")
+    })
+</script>

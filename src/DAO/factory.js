@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 export let products
 export let carts
 export let users
+export let tickets
 
 console.log(`Persistencia con ${config.PERSISTENCE}`);
 switch (config.PERSISTENCE) {
@@ -21,9 +22,11 @@ switch (config.PERSISTENCE) {
         const { default: ProductsMongo } = await import("./Mongo/products.mongo.js")
         const { default: CartsMongo } = await import("./Mongo/carts.mongo.js")
         const { default: UsersMongo } = await import("./Mongo/users.mongo.js")
+        const { default: TicketsMongo } = await import("./Mongo/tickets.mongo.js")
         products = ProductsMongo
         carts = CartsMongo
         users = UsersMongo
+        ticket = TicketsMongo
         break
     default:
         throw new Error('Persistence not recognized')
