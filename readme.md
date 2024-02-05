@@ -7,3 +7,7 @@ Se ha identificado un inconveniente con la ruta `/api/carts/:cid/product/:pid`. 
 ### **Problema con la visualización de los productos del carro**
 
 No puede solucionar el inconvenite con el **Populate**, de poder traer los productos y mostrarlos en la vista de cart
+
+### **Es necesario aplicar todas las capas ?**
+
+Es necesario realizar todas las capas que solicita el ejercicio. Personalmente, considero que la capa de servicio podría omitirse por completo y desarrollar todo en el controlador. Básicamente, en el servicio, se repite lo mismo que en Mongo.

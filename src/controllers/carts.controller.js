@@ -24,5 +24,6 @@ export const deleteProducts = async (req, res) => {
 export const generateTicket = async (req, res) => {
     const { cid } = req.params
     const { user } = req.user
-    await ticketServices.generateTicket(cid, user)
+    const { productsRefused, result } = await ticketServices.generateTicket(cid, user)
+    res.send({ status: "Succes", productsRefused })
 }
